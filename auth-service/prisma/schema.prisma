@@ -1,0 +1,29 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  schemas  = ["app_auth"]
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  username  String   @unique
+  password  String
+  token     String?   @db.Text
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+@@schema("app_auth")
+}
+
+enum Role {
+  USER
+  ADMIN
+  @@schema("app_auth")
+}
+

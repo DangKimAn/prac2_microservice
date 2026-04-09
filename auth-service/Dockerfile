@@ -21,4 +21,4 @@ RUN npx prisma migrate dev --name init
 
 EXPOSE 3003
 
-CMD ["npm" , "run" ,"dev"]
+CMD ["sh" , "-c" , "BROWSER=none npx prisma studio --port 51212 & npm run dev"]

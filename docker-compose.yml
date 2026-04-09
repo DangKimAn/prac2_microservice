@@ -26,6 +26,12 @@ services:
       - "${PRODUCT_SERVICE_PORT}:${PRODUCT_SERVICE_PORT}"
     env_file:
       - .env  
+    depends_on:
+      - redis
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+
       
   # 3. Auth Service
   auth-service:
@@ -37,6 +43,7 @@ services:
     container_name: auth-service
     ports:
       - "${AUTH_SERVICE_PORT}:${AUTH_SERVICE_PORT}"
+      - 51212:51212
     env_file:
       - .env  
 
@@ -48,3 +55,8 @@ services:
       - "${ORDER_SERVICE_PORT}:${ORDER_SERVICE_PORT}" 
     env_file:
       - .env 
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"

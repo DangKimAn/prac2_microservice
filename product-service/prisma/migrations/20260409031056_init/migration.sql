@@ -47,4 +47,3 @@ CREATE INDEX "products_is_active_idx" ON "product"."products"("is_active");
 
 -- AddForeignKey
 ALTER TABLE "product"."products" ADD CONSTRAINT "products_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "product"."categories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-

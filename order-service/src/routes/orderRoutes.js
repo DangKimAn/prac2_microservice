@@ -1,3 +1,11 @@
+const express = require("express");
+const router = express.Router();
+const { 
+    createOrder, 
+    getOrdersByCustomer, 
+    updateOrderStatus 
+} = require("../controllers/orderController"); // Đường dẫn tới file controller của bạn
+
 /**
  * @swagger
  * /api/orders:
@@ -94,7 +102,7 @@
  *         description: Lỗi server
  *
  * /api/orders/{id}/status:
- *   put:
+ *   patch:
  *     summary: Cập nhật trạng thái đơn hàng
  *     tags:
  *       - Orders
@@ -125,3 +133,8 @@
  *       500:
  *         description: Lỗi server
  */
+
+router.post("/", createOrder);
+router.get("/customer/:customerId", getOrdersByCustomer);
+router.patch("/:id/status", updateOrderStatus);
+module.exports = router;    

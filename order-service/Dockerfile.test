@@ -1,0 +1,26 @@
+# Sử dụng Node.js bản LTS (Long Term Support) trên nền Alpine Linux để nhẹ máy
+FROM node:18-alpine
+
+# Tạo thư mục làm việc trong container
+WORKDIR /usr/src/app
+
+# Sao chép package.json và package-lock.json (nếu có) trước
+COPY package*.json ./
+
+# Cài đặt các thư viện (dependencies)
+RUN npm install --production
+
+# Sao chép toàn bộ mã nguồn vào container
+COPY . .
+
+# --- HARDCODE CÁC BIẾN MÔI TRƯỜNG ---
+# Lưu ý: Thay <db_password> bằng mật khẩu thực tế của bạn
+ENV PORT=5000
+ENV MONGO_URI="mongodb+srv://dalatbooking0929399893_db_user:kiman0397069856@cluster0.yqte6xt.mongodb.net/?appName=Cluster0"
+ENV NODE_ENV=developer
+
+# Mở cổng 5000 (trùng với biến PORT ở trên)
+EXPOSE 5000
+
+# Lệnh khởi chạy ứng dụng
+CMD ["node", "server.js"]

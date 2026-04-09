@@ -1,4 +1,5 @@
 // Sub-schema cho mỗi sản phẩm trong đơn hàng
+const mongoose = require("mongoose");
 const OrderItemSchema = new mongoose.Schema({
     productId: { type: Number, required: true }, // ID từ Product Service
     productName: { type: String, required: true }, // Snapshot tại thời điểm mua
@@ -35,7 +36,7 @@ OrderSchema.pre("save", async function (next) {
         const count = await mongoose.model("Order").countDocuments();
         this.orderCode = `ORD-${date}-${String(count + 1).padStart(4, "0")}`;
     }
-    next();
+    // next();
 });
 // Virtual: tính tổng số lượng items
 OrderSchema.virtual("totalItems").get(function () {

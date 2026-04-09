@@ -24,7 +24,7 @@ app.get("/api-docs.json", (req, res) => res.json(swaggerSpec));
 app.get("/health", (req, res) =>
     res.json({
         status: "ok",
-        service: process.env.SERVICE_NAME,
+        service: process.env.SERVICE_NAME_AUTH,
         uptime: process.uptime()
     })
 );

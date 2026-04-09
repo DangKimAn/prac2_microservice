@@ -121,6 +121,7 @@ const options = {
         }
       }
     }
-  }
+  },
+  apis: ["./src/routes/*.js"],
 };
 module.exports = swaggerJsdoc(options);

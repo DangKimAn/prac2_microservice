@@ -1,11 +1,22 @@
-# Dockerfile (dùng chung cho product-service và order-service)
-# Dùng multi-stage build để giảm kích thước image
-# Stage 1: Build
-FROM node:18-alpine AS builder
+FROM node:20
+
 WORKDIR /app
+
 COPY package*.json ./
-RUN npm ci --only=production
-# Chỉ áp dụng cho product-service (có Prisma)
-COPY prisma ./prisma
+RUN npm install
+
+ARG DATABASE_URL
+ARG DIRECT_URL
+
+ENV DATABASE_URL=$DATABASE_URL
+ENV DIRECT_URL=$DIRECT_URL
+
+COPY . .
+# 1. Sinh Prisma Client (bắt buộc trước khi build app)
 RUN npx prisma generate
 
+# 2. Ép buộc xóa sạch DB, áp dụng lại toàn bộ migration cũ và KHÔNG đòi hỏi tương tác
+RUN npx prisma migrate reset --force 
+RUN npx prisma migrate dev --name init                                                                                       ─╯
+RUN npx prisma db seed
+CMD ["sh", "-c", " npm run dev"]

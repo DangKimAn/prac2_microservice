@@ -21,7 +21,6 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
 swaggerOptions: { persistAuthorization: true },
 customSiteTitle: "Product Service API Docs",
 }));
-    console.log(`view swagger products at : localhost:${process.env.PORT}/api/swagger/products`)
 // Export spec dạng JSON để tích hợp với API Gateway
 app.get("/api-docs.json", (req, res) => res.json(swaggerSpec));
 // ─── Routes ──────────────────────────────────

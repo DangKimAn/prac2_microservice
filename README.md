@@ -26,6 +26,6 @@ localhost://{ORDER_SERVICE_PORT}/api-docs
 localhost://{AUTH_SERVICE_PORT}/api-docs
 
 access:
-localhost://{API_GATEWAY_PORT}/api/productcs = ocalhost://{PRODUCT_SERVICE_PORT}/api
-localhost://{API_GATEWAY_PORT}/api/orders = ocalhost://{ORDER_SERVICE_PORT}/api
+localhost://{API_GATEWAY_PORT}/api/productcs = localhost://{PRODUCT_SERVICE_PORT}/api
+localhost://{API_GATEWAY_PORT}/api/orders = localhost://{ORDER_SERVICE_PORT}/api
 

@@ -25,3 +25,5 @@ prisma/migrations/
 
 # Optional: nếu bạn có upload file
 uploads/
+.vercel
+.env*.local

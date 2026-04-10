@@ -29,3 +29,4 @@ access:
 localhost://{API_GATEWAY_PORT}/api/productcs = localhost://{PRODUCT_SERVICE_PORT}/api
 localhost://{API_GATEWAY_PORT}/api/orders = localhost://{ORDER_SERVICE_PORT}/api
 
+    
